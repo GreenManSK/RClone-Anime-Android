@@ -4,6 +4,7 @@ public class Anime {
     private int id;
     private String name;
     private String image;
+    private boolean watched;
 
     public Anime(String name) {
         this.name = name;
@@ -31,5 +32,13 @@ public class Anime {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean isWatched() {
+        return watched;
+    }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 }
