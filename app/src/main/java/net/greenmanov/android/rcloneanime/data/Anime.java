@@ -3,6 +3,7 @@ package net.greenmanov.android.rcloneanime.data;
 public class Anime {
     private int id;
     private String name;
+    private String image;
 
     public Anime(String name) {
         this.name = name;
@@ -22,5 +23,13 @@ public class Anime {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

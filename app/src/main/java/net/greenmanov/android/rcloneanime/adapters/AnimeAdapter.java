@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.data.Anime;
 
@@ -54,6 +56,10 @@ public class AnimeAdapter extends BaseAdapter {
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
         viewHolder.imageView.setImageResource(R.drawable.unknown);
         viewHolder.titleTextView.setText(anime.getName());
+
+        if (anime.getImage() != null) {
+            Picasso.get().load(anime.getImage()).placeholder(R.drawable.unknown).into(viewHolder.imageView);
+        }
 
         return convertView;
     }
