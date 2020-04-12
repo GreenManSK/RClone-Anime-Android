@@ -1,0 +1,2 @@
+rootProject.name='RClone Anime'
+include ':app'
