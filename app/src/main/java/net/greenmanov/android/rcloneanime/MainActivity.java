@@ -37,7 +37,6 @@ public class MainActivity extends AbstractActivity {
         for (int i = 0; i < count; i++) {
             anime[i] = new Anime("3-gatsu no lion");
             if (rand.nextFloat() > 0.5) {
-                anime[i].setName("test");
                 anime[i].setImage("https://static.tvtropes.org/pmwiki/pub/images/SangatsuNoLionMain_3703.jpg");
             }
         }

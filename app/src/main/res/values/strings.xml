@@ -9,6 +9,10 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <!-- Bottom bar -->
+    <string name="watched">Watched</string>
+    <string name="all">All</string>
+
     <!-- Menu -->
     <string name="action_settings">Settings</string>
     <string name="unlock">Unlock</string>

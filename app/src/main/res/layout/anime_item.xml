@@ -13,8 +13,9 @@
 
         <ImageView
             android:id="@+id/imageview_cover_art"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"/>
 
