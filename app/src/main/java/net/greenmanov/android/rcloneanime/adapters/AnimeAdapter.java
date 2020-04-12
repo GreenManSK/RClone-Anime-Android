@@ -25,10 +25,10 @@ public class AnimeAdapter extends BaseAdapter implements Filterable {
     private final List<Anime> allAnime;
     private List<Anime> filteredAnime;
 
-    public AnimeAdapter(Context context, Anime[] animes) {
+    public AnimeAdapter(Context context, List<Anime> animes) {
         this.mContext = context;
-        this.allAnime = Arrays.asList(animes);
-        filteredAnime = Arrays.asList(animes);
+        this.allAnime = new ArrayList<>(animes);
+        filteredAnime = this.allAnime;
     }
 
     @Override

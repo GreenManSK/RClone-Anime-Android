@@ -17,13 +17,20 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.GridView;
+import android.widget.Switch;
 
 import net.greenmanov.android.rcloneanime.adapters.AnimeAdapter;
 import net.greenmanov.android.rcloneanime.data.Anime;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AbstractActivity {
+
+    private GridView gridView;
+    private EditText filterInput;
 
     private Anime[] anime;
     private Filter filter;
@@ -38,9 +45,9 @@ public class MainActivity extends AbstractActivity {
         setSupportActionBar(toolbar);
 
         generateAnime();
-        prepareGrid();
+        refreshGrid(Arrays.asList(anime));
 
-        final EditText filterInput = findViewById(R.id.filterText);
+        filterInput = findViewById(R.id.filterText);
         filterInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -59,6 +66,16 @@ public class MainActivity extends AbstractActivity {
 
             }
         });
+
+        final Switch switchButton = findViewById(R.id.watched);
+        switchButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                refreshGrid(Arrays.stream(anime).filter(Anime::isWatched).collect(Collectors.toList()));
+            } else {
+                refreshGrid(Arrays.asList(anime));
+            }
+            filter.filter(filterInput.getText().toString());
+        });
     }
 
     private void generateAnime() {
@@ -75,8 +92,10 @@ public class MainActivity extends AbstractActivity {
         }
     }
 
-    private void prepareGrid() {
-        GridView gridView = findViewById(R.id.gridview);
+    private void refreshGrid(List<Anime> anime) {
+        if (gridView == null) {
+            gridView = findViewById(R.id.gridview);
+        }
         AnimeAdapter booksAdapter = new AnimeAdapter(this, anime);
         gridView.setAdapter(booksAdapter);
         gridView.setTextFilterEnabled(true);
