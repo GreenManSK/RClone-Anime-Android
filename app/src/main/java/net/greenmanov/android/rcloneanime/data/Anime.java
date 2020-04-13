@@ -5,6 +5,7 @@ public class Anime {
     private String name;
     private String image;
     private boolean watched;
+    private Drive drive;
 
     public Anime(String name) {
         this.name = name;
@@ -40,5 +41,13 @@ public class Anime {
 
     public void setWatched(boolean watched) {
         this.watched = watched;
+    }
+
+    public Drive getDrive() {
+        return drive;
+    }
+
+    public void setDrive(Drive drive) {
+        this.drive = drive;
     }
 }
