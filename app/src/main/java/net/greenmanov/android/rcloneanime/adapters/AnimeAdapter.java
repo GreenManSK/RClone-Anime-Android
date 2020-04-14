@@ -16,7 +16,6 @@ import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.data.Anime;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AnimeAdapter extends BaseAdapter implements Filterable {
@@ -87,7 +86,7 @@ public class AnimeAdapter extends BaseAdapter implements Filterable {
 
             final ViewHolder viewHolder = new ViewHolder(
                     (ImageView) convertView.findViewById(R.id.imageview_cover_art),
-                    (TextView) convertView.findViewById(R.id.textview_book_name)
+                    (TextView) convertView.findViewById(R.id.anime_name)
             );
             convertView.setTag(viewHolder);
         }

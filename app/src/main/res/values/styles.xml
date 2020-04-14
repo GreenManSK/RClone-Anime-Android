@@ -32,4 +32,21 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingHorizontal">15dp</item>
     </style>
+
+    <style name="AnimeFile">
+        <item name="android:background">@drawable/anime_file_bg</item>
+    </style>
+
+    <style name="AnimeFileDivider">
+        <item name="android:background">@color/colorMainText</item>
+        <item name="android:layout_height">1px</item>
+
+    </style>
+
+    <style name="AnimeFileTitle">
+        <item name="android:textColor">@color/colorMainText</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingHorizontal">20dp</item>
+    </style>
 </resources>

@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.greenmanov.android.rcloneanime.activities.MainActivity">
+    <item
+        android:id="@+id/menu_download"
+        android:orderInCategory="100"
+        android:title="@string/download"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_file_download_white_48dp" />
+    <item
+        android:id="@+id/menu_select_all"
+        android:orderInCategory="200"
+        android:title="@string/select_all"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_select_all_white_48dp" />
+    <item
+        android:id="@+id/menu_deselect"
+        android:orderInCategory="300"
+        android:title="@string/deselect"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_clear_white_48dp" />
+</menu>

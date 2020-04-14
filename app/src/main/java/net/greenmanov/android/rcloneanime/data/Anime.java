@@ -1,11 +1,14 @@
 package net.greenmanov.android.rcloneanime.data;
 
+import java.util.List;
+
 public class Anime {
     private int id;
     private String name;
     private String image;
     private boolean watched;
     private Drive drive;
+    private List<AnimeFile> fileList;
 
     public Anime(String name) {
         this.name = name;
@@ -49,5 +52,13 @@ public class Anime {
 
     public void setDrive(Drive drive) {
         this.drive = drive;
+    }
+
+    public List<AnimeFile> getFileList() {
+        return fileList;
+    }
+
+    public void setFileList(List<AnimeFile> fileList) {
+        this.fileList = fileList;
     }
 }

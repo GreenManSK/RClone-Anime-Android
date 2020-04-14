@@ -22,7 +22,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/textview_book_name"
+        android:id="@+id/anime_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Are You My Mother"
