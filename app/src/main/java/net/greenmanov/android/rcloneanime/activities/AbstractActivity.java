@@ -9,8 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import net.greenmanov.android.rcloneanime.R;
+import net.greenmanov.android.rcloneanime.dialogs.UnlockDialog;
 
 public abstract class AbstractActivity extends AppCompatActivity {
+
+    private final static String UNLOCK_DIALOG_TAG = "unlockDialog";
+
+    private UnlockDialog unlockDialog;
 
     protected void enableBackButton(Toolbar toolbar) {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,11 +51,19 @@ public abstract class AbstractActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_settings) {
-            return true;
+        switch (id) {
+            case R.id.menu_settings:
+                return true;
+            case R.id.menu_unlock:
+                showUnlockDialog();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private  void showUnlockDialog() {
+        unlockDialog = new UnlockDialog();
+        unlockDialog.show(getSupportFragmentManager(), UNLOCK_DIALOG_TAG);
     }
 }
