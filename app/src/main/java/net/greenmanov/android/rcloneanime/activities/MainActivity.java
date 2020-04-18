@@ -14,12 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.adapters.AnimeAdapter;
-import net.greenmanov.android.rcloneanime.data.AnimeEntity;
+import net.greenmanov.android.rcloneanime.data.Anime;
 import net.greenmanov.android.rcloneanime.persistance.AppDatabase;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AbstractActivity {
@@ -31,23 +29,31 @@ public class MainActivity extends AbstractActivity {
     private EditText filterInput;
     private Switch switchButton;
 
-    private AnimeEntity[] anime;
+    private List<Anime> anime;
     private Filter filter;
+
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // Dark theme
 
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-//        System.out.println(db.animeDao().get(1));
+        database = AppDatabase.getInstance(getApplicationContext());
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        generateAnime();
-        refreshGrid(Arrays.asList(anime));
+        database.animeDao().list().observe(this, anime -> {
+            this.anime = anime;
+            refreshGrid(anime);
+
+            init();
+        });
+    }
+
+    private void init() {
 
         filterInput = findViewById(R.id.filterText);
         filterInput.addTextChangedListener(new TextWatcher() {
@@ -74,9 +80,9 @@ public class MainActivity extends AbstractActivity {
         switchButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             watched = isChecked;
             if (isChecked) {
-                refreshGrid(Arrays.stream(anime).filter(AnimeEntity::isWatched).collect(Collectors.toList()));
+                refreshGrid(anime.stream().filter(Anime::isWatched).collect(Collectors.toList()));
             } else {
-                refreshGrid(Arrays.asList(anime));
+                refreshGrid(anime);
             }
             filter.filter(filterInput.getText().toString());
         });
@@ -88,10 +94,6 @@ public class MainActivity extends AbstractActivity {
             finish();
         });
 
-        init();
-    }
-
-    private void init() {
         switchButton.setChecked(watched);
         if (filterText != null && filter != null) {
             filter.filter(filterText);
@@ -99,22 +101,7 @@ public class MainActivity extends AbstractActivity {
         }
     }
 
-    private void generateAnime() {
-        Random rand = new Random();
-
-        int count = 50;
-        anime = new AnimeEntity[count];
-        for (int i = 0; i < count; i++) {
-            anime[i] = new AnimeEntity();
-            anime[i].setName("3-gatsu no lion");
-            if (rand.nextFloat() > 0.5) {
-                anime[i].setImage("https://static.tvtropes.org/pmwiki/pub/images/SangatsuNoLionMain_3703.jpg");
-            }
-            anime[i].setWatched(rand.nextFloat() > 0.5);
-        }
-    }
-
-    private void refreshGrid(List<AnimeEntity> anime) {
+    private void refreshGrid(List<Anime> anime) {
         if (gridView == null) {
             gridView = findViewById(R.id.gridview);
         }

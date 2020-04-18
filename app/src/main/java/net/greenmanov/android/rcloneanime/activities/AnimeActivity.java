@@ -11,11 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.adapters.AnimeFileAdapter;
 import net.greenmanov.android.rcloneanime.data.Anime;
-import net.greenmanov.android.rcloneanime.data.AnimeEntity;
 import net.greenmanov.android.rcloneanime.data.AnimeFile;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.greenmanov.android.rcloneanime.persistance.AppDatabase;
 
 public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.OnClickListener {
 
@@ -28,10 +25,14 @@ public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.
     private MenuItem selectAllMenuItem;
     private MenuItem deselectMenuItem;
 
+    private AppDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anime);
+
+        database = AppDatabase.getInstance(getApplicationContext());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,11 +40,12 @@ public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.
         enableBackButton(toolbar);
 
         int animeId = getIntent().getIntExtra(AnimeActivity.ANIME_ID, 0);
-        anime = new Anime(); // TODO: Get from DB
-        addFiles(anime);
+        database.animeDao().get(animeId).observe(this, anime -> {
+            this.anime = anime;
 
-        getSupportActionBar().setTitle(anime.getName());
-        init();
+            getSupportActionBar().setTitle(anime.getName());
+            init();
+        });
     }
 
     private void init() {
@@ -52,16 +54,6 @@ public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.
         fileList.setLayoutManager(new LinearLayoutManager(this));
         fileList.setHasFixedSize(true);
         fileList.setAdapter(adapter);
-    }
-
-    private void addFiles(Anime anime) {
-        List<AnimeFile> fileList = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            AnimeFile file = new AnimeFile();
-            file.setName("abdc.mkv");
-            fileList.add(file);
-        }
-        anime.setFileList(fileList);
     }
 
     @Override

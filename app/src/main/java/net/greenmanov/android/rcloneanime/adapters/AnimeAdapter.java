@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import net.greenmanov.android.rcloneanime.R;
-import net.greenmanov.android.rcloneanime.data.AnimeEntity;
+import net.greenmanov.android.rcloneanime.data.Anime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +21,10 @@ import java.util.List;
 public class AnimeAdapter extends BaseAdapter implements Filterable {
 
     private final Context mContext;
-    private final List<AnimeEntity> allAnime;
-    private List<AnimeEntity> filteredAnime;
+    private final List<Anime> allAnime;
+    private List<Anime> filteredAnime;
 
-    public AnimeAdapter(Context context, List<AnimeEntity> animes) {
+    public AnimeAdapter(Context context, List<Anime> animes) {
         this.mContext = context;
         this.allAnime = new ArrayList<>(animes);
         filteredAnime = this.allAnime;
@@ -55,9 +55,9 @@ public class AnimeAdapter extends BaseAdapter implements Filterable {
                     results.count = allAnime.size();
                     results.values = allAnime;
                 } else {
-                    List<AnimeEntity> resultsData = new ArrayList<>();
+                    List<Anime> resultsData = new ArrayList<>();
                     String searchStr = constraint.toString().toUpperCase();
-                    for (AnimeEntity o : allAnime) {
+                    for (Anime o : allAnime) {
                         if (o.getName().toUpperCase().contains(searchStr)) {
                             resultsData.add(o);
                         }
@@ -70,7 +70,7 @@ public class AnimeAdapter extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                filteredAnime = (List<AnimeEntity>) results.values;
+                filteredAnime = (List<Anime>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -78,15 +78,15 @@ public class AnimeAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final AnimeEntity anime = filteredAnime.get(position);
+        final Anime anime = filteredAnime.get(position);
 
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.anime_item, null);
 
             final ViewHolder viewHolder = new ViewHolder(
-                    (ImageView) convertView.findViewById(R.id.imageview_cover_art),
-                    (TextView) convertView.findViewById(R.id.anime_name)
+                    convertView.findViewById(R.id.imageview_cover_art),
+                    convertView.findViewById(R.id.anime_name)
             );
             convertView.setTag(viewHolder);
         }

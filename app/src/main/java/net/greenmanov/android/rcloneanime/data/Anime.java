@@ -27,6 +27,7 @@ public class Anime {
     public String getImage() {
         return anime.getImage();
     }
+
     public boolean isWatched() {
         return anime.isWatched();
     }
