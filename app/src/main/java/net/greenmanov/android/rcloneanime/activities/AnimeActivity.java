@@ -1,13 +1,9 @@
 package net.greenmanov.android.rcloneanime.activities;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
-import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.adapters.AnimeFileAdapter;
 import net.greenmanov.android.rcloneanime.data.Anime;
+import net.greenmanov.android.rcloneanime.data.AnimeEntity;
 import net.greenmanov.android.rcloneanime.data.AnimeFile;
 
 import java.util.ArrayList;
@@ -42,7 +39,7 @@ public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.
         enableBackButton(toolbar);
 
         int animeId = getIntent().getIntExtra(AnimeActivity.ANIME_ID, 0);
-        anime = new Anime("Tasogare Otome x Amnesia"); // TODO: Get from DB
+        anime = new Anime(); // TODO: Get from DB
         addFiles(anime);
 
         getSupportActionBar().setTitle(anime.getName());

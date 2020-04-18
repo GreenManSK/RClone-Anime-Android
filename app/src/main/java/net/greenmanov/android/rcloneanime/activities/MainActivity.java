@@ -14,7 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.adapters.AnimeAdapter;
-import net.greenmanov.android.rcloneanime.data.Anime;
+import net.greenmanov.android.rcloneanime.data.AnimeEntity;
+import net.greenmanov.android.rcloneanime.persistance.AppDatabase;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,13 +31,16 @@ public class MainActivity extends AbstractActivity {
     private EditText filterInput;
     private Switch switchButton;
 
-    private Anime[] anime;
+    private AnimeEntity[] anime;
     private Filter filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // Dark theme
+
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+//        System.out.println(db.animeDao().get(1));
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -70,7 +74,7 @@ public class MainActivity extends AbstractActivity {
         switchButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             watched = isChecked;
             if (isChecked) {
-                refreshGrid(Arrays.stream(anime).filter(Anime::isWatched).collect(Collectors.toList()));
+                refreshGrid(Arrays.stream(anime).filter(AnimeEntity::isWatched).collect(Collectors.toList()));
             } else {
                 refreshGrid(Arrays.asList(anime));
             }
@@ -99,9 +103,10 @@ public class MainActivity extends AbstractActivity {
         Random rand = new Random();
 
         int count = 50;
-        anime = new Anime[count];
+        anime = new AnimeEntity[count];
         for (int i = 0; i < count; i++) {
-            anime[i] = new Anime("3-gatsu no lion");
+            anime[i] = new AnimeEntity();
+            anime[i].setName("3-gatsu no lion");
             if (rand.nextFloat() > 0.5) {
                 anime[i].setImage("https://static.tvtropes.org/pmwiki/pub/images/SangatsuNoLionMain_3703.jpg");
             }
@@ -109,7 +114,7 @@ public class MainActivity extends AbstractActivity {
         }
     }
 
-    private void refreshGrid(List<Anime> anime) {
+    private void refreshGrid(List<AnimeEntity> anime) {
         if (gridView == null) {
             gridView = findViewById(R.id.gridview);
         }

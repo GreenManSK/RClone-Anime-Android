@@ -1,45 +1,25 @@
 package net.greenmanov.android.rcloneanime.data;
 
+import androidx.room.Embedded;
+import androidx.room.Relation;
+
 import java.util.List;
 
 public class Drive {
-    private String Name;
-    private String Path;
-    private boolean Watched;
-    private List<Anime> animeList;
+    @Embedded
+    public DriveEntity drive;
 
-    public Drive() {
-    }
+    @Relation(
+            parentColumn = "id",
+            entityColumn = "id"
+    )
+    private List<AnimeEntity> animeList;
 
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getPath() {
-        return Path;
-    }
-
-    public void setPath(String path) {
-        Path = path;
-    }
-
-    public boolean isWatched() {
-        return Watched;
-    }
-
-    public void setWatched(boolean watched) {
-        Watched = watched;
-    }
-
-    public List<Anime> getAnimeList() {
+    public List<AnimeEntity> getAnimeList() {
         return animeList;
     }
 
-    public void setAnimeList(List<Anime> animeList) {
+    public void setAnimeList(List<AnimeEntity> animeList) {
         this.animeList = animeList;
     }
 }

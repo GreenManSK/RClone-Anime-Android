@@ -4,13 +4,17 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class AnimeFile {
+public class AnimeEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String name;
 
-    public AnimeFile() {
+    private String image;
+
+    private boolean watched;
+
+    public AnimeEntity() {
     }
 
     public int getId() {
@@ -27,5 +31,21 @@ public class AnimeFile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public boolean isWatched() {
+        return watched;
+    }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 }
