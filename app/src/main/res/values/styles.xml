@@ -49,4 +49,13 @@
         <item name="android:paddingVertical">10dp</item>
         <item name="android:paddingHorizontal">20dp</item>
     </style>
+
+    <style name="DrivesButtonPanel">
+        <item name="android:paddingHorizontal">10dp</item>
+    </style>
+
+    <style name="DrivesTextInput">
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:layout_marginVertical">5dp</item>
+    </style>
 </resources>

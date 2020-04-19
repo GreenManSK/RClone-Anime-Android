@@ -7,10 +7,11 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.GridView;
-import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.adapters.AnimeAdapter;
@@ -27,7 +28,7 @@ public class MainActivity extends AbstractActivity {
 
     private GridView gridView;
     private EditText filterInput;
-    private Switch switchButton;
+    private SwitchMaterial switchButton;
 
     private List<Anime> anime;
     private Filter filter;

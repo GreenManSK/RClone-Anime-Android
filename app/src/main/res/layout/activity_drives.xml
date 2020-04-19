@@ -6,6 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".activities.DrivesActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/DrivesButtonPanel">
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add"
+                android:layout_alignParentStart="true"
+                android:drawableLeft="@drawable/ic_add_white_24dp"/>
+            <Button
+                android:id="@+id/refreshAllButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/refresh_all"
+                android:layout_alignParentEnd="true"
+                android:drawableLeft="@drawable/ic_refresh_white_24dp"/>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/driveList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

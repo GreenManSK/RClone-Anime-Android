@@ -25,7 +25,7 @@ public interface DriveDao {
     void delete(DriveEntity drive);
 
     @Transaction
-    @Query("SELECT * FROM DriveEntity")
+    @Query("SELECT * FROM DriveEntity d ORDER BY d.Path, d.Name")
     LiveData<List<Drive>> list();
 
     @Transaction

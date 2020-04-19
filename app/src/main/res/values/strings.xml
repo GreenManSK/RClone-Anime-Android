@@ -26,4 +26,17 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="password">Password</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="refresh_all">Refresh all</string>
+
+    <!-- Drive -->
+    <string name="driveName">Drive name</string>
+    <string name="drivePath">Directory path</string>
+
+
+    <!-- Errors -->
+    <string name="driveNameError">Invalid drive name</string>
+    <string name="drivePathError">Invalid directory path</string>
 </resources>

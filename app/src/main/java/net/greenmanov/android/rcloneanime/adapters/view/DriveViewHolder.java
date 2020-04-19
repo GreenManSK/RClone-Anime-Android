@@ -1,6 +1,7 @@
 package net.greenmanov.android.rcloneanime.adapters.view;
 
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +16,17 @@ public class DriveViewHolder extends RecyclerView.ViewHolder {
     private DriveAdapter adapter;
     private int position;
 
+    private final TextView textView;
+
     public DriveViewHolder(@NonNull View itemView, DriveAdapter adapter) {
         super(itemView);
         this.adapter = adapter;
+
+        textView = itemView.findViewById(R.id.anime_name);
     }
 
     public void bind(int position) {
         this.position = position;
+        textView.setText(adapter.get(position).getName());
     }
 }
