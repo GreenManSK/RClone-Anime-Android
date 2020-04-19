@@ -5,9 +5,9 @@ import android.util.Log;
 import com.google.crypto.tink.Aead;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
-import com.google.crypto.tink.config.TinkConfig;
 
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
 
 public class TinkPasswordStorage implements IPasswordStorage {
 
@@ -31,5 +31,9 @@ public class TinkPasswordStorage implements IPasswordStorage {
             Log.e(LOG_TAG, "Problem while decrypting password", e);
             return "";
         }
+    }
+
+    public void Destroy() {
+        Arrays.fill(_p, (byte) 0);
     }
 }

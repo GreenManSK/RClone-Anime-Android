@@ -1,21 +1,28 @@
 package net.greenmanov.android.rcloneanime.activities;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import net.greenmanov.android.rcloneanime.AppController;
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.dialogs.UnlockDialog;
 
+import java.security.GeneralSecurityException;
+
 public abstract class AbstractActivity extends AppCompatActivity {
 
+    private final static String LOGGER_TAG = AbstractActivity.class.getName();
     private final static String UNLOCK_DIALOG_TAG = "unlockDialog";
 
     private UnlockDialog unlockDialog;
+    private MenuItem lockMenuItem;
 
     protected void enableBackButton(Toolbar toolbar) {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,9 +46,13 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.menu_lock);
-        item.setEnabled(false); // TODO: base on real state
+        lockMenuItem = menu.findItem(R.id.menu_lock);
+        updateLockMenuItem();
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    protected void updateLockMenuItem() {
+        lockMenuItem.setEnabled(AppController.getPasswordStorage() != null);
     }
 
     @Override
@@ -60,13 +71,25 @@ public abstract class AbstractActivity extends AppCompatActivity {
             case R.id.menu_unlock:
                 showUnlockDialog();
                 return true;
+            case R.id.menu_lock:
+                AppController.removePassword();
+                updateLockMenuItem();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     private  void showUnlockDialog() {
-        unlockDialog = new UnlockDialog();
+        unlockDialog = new UnlockDialog((password, durationInMs) -> {
+            try {
+                AppController.setPassword(password, durationInMs);
+            } catch (GeneralSecurityException e) {
+                Log.e(LOGGER_TAG, "Error while setting password", e);
+                Toast.makeText(getApplicationContext(), R.string.passwordError, Toast.LENGTH_SHORT).show();
+            }
+            updateLockMenuItem();
+        });
         unlockDialog.show(getSupportFragmentManager(), UNLOCK_DIALOG_TAG);
     }
 }

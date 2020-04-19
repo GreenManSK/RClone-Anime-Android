@@ -7,4 +7,11 @@
         <item>2h</item>
         <item>24h</item>
     </string-array>
+    <integer-array name="durations_values_seconds">
+        <item>300</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+        <item>86400</item>
+    </integer-array>
 </resources>
