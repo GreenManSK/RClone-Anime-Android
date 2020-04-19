@@ -29,14 +29,19 @@
     <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="save">Save</string>
+    <string name="delete">Delete</string>
     <string name="refresh_all">Refresh all</string>
+    <string name="refresh">Refresh</string>
 
     <!-- Drive -->
     <string name="driveName">Drive name</string>
     <string name="drivePath">Directory path</string>
-
+    <string name="deleteDrive">Do you want to delete drive %1$s?</string>
 
     <!-- Errors -->
     <string name="driveNameError">Invalid drive name</string>
     <string name="drivePathError">Invalid directory path</string>
+    <string name="driveDelimiter">:</string>
+    <string name="driveLastRefresh">Last refresh:</string>
+    <string name="never">Never</string>
 </resources>

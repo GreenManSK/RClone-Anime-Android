@@ -9,8 +9,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -107,6 +105,13 @@ public class DriveDialog extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        if (entity != null) {
+            driveNameInput.setText(entity.getName());
+            drivePathInput.setText(entity.getPath());
+            watchedSwitch.setChecked(entity.isWatched());
+        }
+
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(isValid());
     }
 

@@ -15,9 +15,11 @@ import java.util.List;
 
 public class DriveAdapter extends RecyclerView.Adapter<DriveViewHolder> {
     private final List<Drive> list;
+    private final DriveButtonsListener listener;
 
-    public DriveAdapter(List<Drive> list) {
+    public DriveAdapter(List<Drive> list, DriveButtonsListener listener) {
         this.list = list;
+        this.listener = listener;
     }
 
     @NonNull
@@ -42,5 +44,15 @@ public class DriveAdapter extends RecyclerView.Adapter<DriveViewHolder> {
 
     public Drive get(int position) {
         return list.get(position);
+    }
+
+    public DriveButtonsListener getListener() {
+        return listener;
+    }
+
+    public interface DriveButtonsListener {
+        void onEdit(Drive drive);
+        void onRefresh(Drive drive);
+        void onDelete(Drive drive);
     }
 }

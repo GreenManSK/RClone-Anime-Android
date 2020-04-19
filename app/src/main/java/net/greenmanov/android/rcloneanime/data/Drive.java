@@ -47,4 +47,8 @@ public class Drive {
     public DriveEntity getDrive() {
         return drive;
     }
+
+    public String getFullName() {
+        return getName() + ":" + getPath();
+    }
 }
