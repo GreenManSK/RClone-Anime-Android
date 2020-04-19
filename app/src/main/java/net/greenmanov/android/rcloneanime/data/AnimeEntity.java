@@ -5,6 +5,9 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class AnimeEntity {
+
+    public static final int VERSION = 1;
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 

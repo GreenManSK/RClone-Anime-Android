@@ -10,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.greenmanov.android.rcloneanime.adapters.view.AnimeFileViewHolder;
-import net.greenmanov.android.rcloneanime.data.AnimeFile;
+import net.greenmanov.android.rcloneanime.data.AnimeFileEntity;
 
 import java.util.List;
 
 public class AnimeFileAdapter extends RecyclerView.Adapter<AnimeFileViewHolder> {
 
-    private final List<AnimeFile> list;
+    private final List<AnimeFileEntity> list;
     private final SparseBooleanArray selected;
     private final OnClickListener onClickListener;
 
-    public AnimeFileAdapter(List<AnimeFile> list, OnClickListener onClickListener) {
+    public AnimeFileAdapter(List<AnimeFileEntity> list, OnClickListener onClickListener) {
         this.list = list;
         this.onClickListener = onClickListener;
         this.selected = new SparseBooleanArray();
@@ -46,7 +46,7 @@ public class AnimeFileAdapter extends RecyclerView.Adapter<AnimeFileViewHolder> 
         return list.size();
     }
 
-    public AnimeFile get(int poistion) {
+    public AnimeFileEntity get(int poistion) {
         return list.get(poistion);
     }
 
@@ -84,6 +84,6 @@ public class AnimeFileAdapter extends RecyclerView.Adapter<AnimeFileViewHolder> 
 
     @FunctionalInterface
     public interface OnClickListener {
-        void onClick(AnimeFile file);
+        void onClick(AnimeFileEntity file);
     }
 }

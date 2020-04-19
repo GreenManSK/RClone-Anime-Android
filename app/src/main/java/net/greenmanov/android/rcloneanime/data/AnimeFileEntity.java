@@ -4,13 +4,16 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class AnimeFile {
+public class AnimeFileEntity {
+
+    public static final int VERSION = 1;
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String name;
 
-    public AnimeFile() {
+    public AnimeFileEntity() {
     }
 
     public int getId() {

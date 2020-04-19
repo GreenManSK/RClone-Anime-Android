@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.greenmanov.android.rcloneanime.R;
 import net.greenmanov.android.rcloneanime.adapters.AnimeFileAdapter;
 import net.greenmanov.android.rcloneanime.data.Anime;
-import net.greenmanov.android.rcloneanime.data.AnimeFile;
+import net.greenmanov.android.rcloneanime.data.AnimeFileEntity;
 import net.greenmanov.android.rcloneanime.persistance.AppDatabase;
 
 public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.OnClickListener {
@@ -81,7 +81,7 @@ public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.
     }
 
     @Override
-    public void onClick(AnimeFile file) {
+    public void onClick(AnimeFileEntity file) {
         if (adapter.getSelectedCount() == 0) {
             getSupportActionBar().setTitle(anime.getName());
         } else {

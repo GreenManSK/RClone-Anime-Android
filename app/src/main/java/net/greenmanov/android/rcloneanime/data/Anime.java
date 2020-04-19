@@ -13,7 +13,7 @@ public class Anime {
             parentColumn = "id",
             entityColumn = "id"
     )
-    private List<AnimeFile> fileList;
+    private List<AnimeFileEntity> fileList;
 
 
     public int getId() {
@@ -32,11 +32,11 @@ public class Anime {
         return anime.isWatched();
     }
 
-    public List<AnimeFile> getFileList() {
+    public List<AnimeFileEntity> getFileList() {
         return fileList;
     }
 
-    public void setFileList(List<AnimeFile> fileList) {
+    public void setFileList(List<AnimeFileEntity> fileList) {
         this.fileList = fileList;
     }
 }

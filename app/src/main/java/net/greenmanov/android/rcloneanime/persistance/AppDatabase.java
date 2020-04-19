@@ -7,10 +7,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import net.greenmanov.android.rcloneanime.data.AnimeEntity;
-import net.greenmanov.android.rcloneanime.data.AnimeFile;
+import net.greenmanov.android.rcloneanime.data.AnimeFileEntity;
 import net.greenmanov.android.rcloneanime.data.DriveEntity;
 
-@Database(entities = {AnimeEntity.class, AnimeFile.class, DriveEntity.class}, version = 1, exportSchema = false)
+@Database(
+        entities = {AnimeEntity.class, AnimeFileEntity.class, DriveEntity.class},
+        version = AnimeEntity.VERSION + AnimeFileEntity.VERSION + DriveEntity.VERSION,
+        exportSchema = false
+)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "db";
