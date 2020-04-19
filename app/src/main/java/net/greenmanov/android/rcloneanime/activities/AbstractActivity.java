@@ -52,7 +52,10 @@ public abstract class AbstractActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.menu_settings:
+            case R.id.menu_drives:
+                Intent intent = new Intent(getBaseContext(), DrivesActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
             case R.id.menu_unlock:
                 showUnlockDialog();

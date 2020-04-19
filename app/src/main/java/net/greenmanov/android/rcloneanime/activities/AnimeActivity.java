@@ -36,7 +36,6 @@ public class AnimeActivity extends AbstractActivity implements AnimeFileAdapter.
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         enableBackButton(toolbar);
 
         int animeId = getIntent().getIntExtra(AnimeActivity.ANIME_ID, 0);

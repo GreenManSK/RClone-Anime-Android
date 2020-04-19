@@ -2,6 +2,11 @@ package net.greenmanov.android.rcloneanime.data;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import net.greenmanov.android.rcloneanime.persistance.LocalDateTimeConverter;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class DriveEntity {
@@ -16,6 +21,9 @@ public class DriveEntity {
     private String Path;
 
     private boolean Watched;
+
+    @TypeConverters(LocalDateTimeConverter.class)
+    private LocalDateTime lastRefresh;
 
     public DriveEntity() {
     }
@@ -50,5 +58,13 @@ public class DriveEntity {
 
     public void setWatched(boolean watched) {
         Watched = watched;
+    }
+
+    public LocalDateTime getLastRefresh() {
+        return lastRefresh;
+    }
+
+    public void setLastRefresh(LocalDateTime lastRefresh) {
+        this.lastRefresh = lastRefresh;
     }
 }
