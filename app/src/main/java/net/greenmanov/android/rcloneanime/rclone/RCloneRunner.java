@@ -18,7 +18,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class RCloneRunner {
 
@@ -70,7 +72,7 @@ public class RCloneRunner {
     }
 
     public List<RcloneFile> ls(String drive, String path) throws RCloneException {
-        String[] command = createCommand("lsjson", "" + drive + ":" + path + "");
+        String[] command = createCommand("lsjson","-R", "" + drive + ":" + path + "");
 
         JSONArray results;
         Process process;
@@ -121,8 +123,9 @@ public class RCloneRunner {
         return file.exists() && file.canExecute();
     }
 
-    private String[] createCommand(String command, String params) {
-        return new String[]{rclonePath, "--config", rcloneConfigPath, command, params};
+    private String[] createCommand(String command, String ...params) {
+        String[] commandBase = new String[]{rclonePath, "--config", rcloneConfigPath, command};
+        return Stream.concat(Arrays.stream(commandBase), Arrays.stream(params)).toArray(String[]::new);
     }
 
     private void logErrorOutput(Process process) {

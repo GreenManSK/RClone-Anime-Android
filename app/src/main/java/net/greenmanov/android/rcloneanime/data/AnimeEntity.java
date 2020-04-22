@@ -11,6 +11,8 @@ public class AnimeEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    private int driveId;
+
     private String name;
 
     private String image;
@@ -26,6 +28,14 @@ public class AnimeEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getDriveId() {
+        return driveId;
+    }
+
+    public void setDriveId(int driveId) {
+        this.driveId = driveId;
     }
 
     public String getName() {

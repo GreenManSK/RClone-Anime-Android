@@ -36,4 +36,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract DriveDao driveDao();
 
+    public abstract AnimeFileDao animeFileDao();
+
 }

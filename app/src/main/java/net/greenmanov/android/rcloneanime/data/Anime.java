@@ -11,10 +11,9 @@ public class Anime {
 
     @Relation(
             parentColumn = "id",
-            entityColumn = "id"
+            entityColumn = "animeId"
     )
     private List<AnimeFileEntity> fileList;
-
 
     public int getId() {
         return anime.getId();

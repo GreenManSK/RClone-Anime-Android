@@ -12,7 +12,7 @@ public class Drive {
 
     @Relation(
             parentColumn = "id",
-            entityColumn = "id"
+            entityColumn = "driveId"
     )
     private List<AnimeEntity> animeList;
 

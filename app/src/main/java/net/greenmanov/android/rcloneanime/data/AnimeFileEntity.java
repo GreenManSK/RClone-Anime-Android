@@ -13,6 +13,8 @@ public class AnimeFileEntity {
 
     private String name;
 
+    private int animeId;
+
     public AnimeFileEntity() {
     }
 
@@ -30,5 +32,13 @@ public class AnimeFileEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAnimeId() {
+        return animeId;
+    }
+
+    public void setAnimeId(int animeId) {
+        this.animeId = animeId;
     }
 }
